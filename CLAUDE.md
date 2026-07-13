@@ -15,11 +15,8 @@
 - Don't use timezones: dates are naive for a reason. Due dates etc. are more like the dates in a journal entry than precise points in time.
 
 ## Plan
-
-- 複数画像のアップロード機能
-- 画像配信URLの再検討
-    - この画像アップローダから別のアップローダに自然に移行できるように、画像URLはPocketBaseに依存しない表現のほうが安心できる。
-    - もとのpicmdのように、カスタムルートで画像表示できるようにしたい。
 - 画像にうめこまれたメタデータから個人情報を削除する方法の検討
+- SVG画像対応
+- 画像のサイズをサーチパラメータなどで指定できるようにする
 
 ## Work in progress
