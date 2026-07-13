@@ -8,7 +8,7 @@ services:
     env_file:
       - picmd.env
     volumes:
-      - ./data:/picmd/pb_data
+      - ./data:/picmd/data
         #- /etc/ssl/certs/root_ca.crt:/certs/root_ca.crt:ro # optional
     environment:
       - TZ=Europe/London
