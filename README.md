@@ -2,16 +2,15 @@
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/picmd)
 
-## Introduction 
-
 <img src="frontend/public/favicon.svg" width="100" align="right" />
 
 - Markdwonに画像を貼り付けるためのURLを生成する画像アップローダ。
+- 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にする
 - クリップボードから簡単に画像をアップロードできる。
 
+  
 ## Work in progress
-- picmdからpocketbase+soild.jsをベースにしたpicmdに移行しようとしている。
-- 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にすることが移行の目的。
+- 画像アップローダのパーセンテージを表示しない代わりにローダを表示する
 
 ## Plan
 - 
