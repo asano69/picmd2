@@ -1,6 +1,6 @@
-# myapp
+# picmd2
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/myapp)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/picmd2)
 
 ## Introduction 
 

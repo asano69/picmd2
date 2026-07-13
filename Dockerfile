@@ -32,7 +32,7 @@ COPY internal/ ./internal/
 COPY migrations/ ./migrations/
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o myapp ./cmd/myapp
+    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o picmd2 ./cmd/picmd2
 
 # ==========================================
 # Stage 2: Runtime
@@ -41,7 +41,7 @@ FROM alpine:3.23
 
 
 
-WORKDIR /myapp
+WORKDIR /picmd2
 
 RUN apk add --no-cache \
     ca-certificates \
@@ -51,13 +51,13 @@ RUN apk add --no-cache \
     bash \
     curl
  
-RUN addgroup -g 1000 myapp && \
-    adduser -D -u 1000 -G myapp myapp
+RUN addgroup -g 1000 picmd2 && \
+    adduser -D -u 1000 -G picmd2 picmd2
 
-COPY --from=go-builder /build/myapp /usr/local/bin/myapp
+COPY --from=go-builder /build/picmd2 /usr/local/bin/picmd2
 
-RUN mkdir -p /certs /myapp/data
-RUN chown -R 1000:1000 /myapp
+RUN mkdir -p /certs /picmd2/data
+RUN chown -R 1000:1000 /picmd2
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
@@ -65,5 +65,5 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 EXPOSE 3000
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["myapp", "serve"]
+CMD ["picmd2", "serve"]
 
