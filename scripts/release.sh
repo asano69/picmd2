@@ -6,7 +6,7 @@ set -euo pipefail
 # settings
 ########################################
 
-VERSION_FILE="cmd/picmd2/main.go"
+VERSION_FILE="cmd/picmd/main.go"
 REMOTE="origin"
 BRANCH="main"
 COMMIT_PREFIX="release:"

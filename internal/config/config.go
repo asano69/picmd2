@@ -1,4 +1,4 @@
-// Package config loads the configuration for picmd2 serve from
+// Package config loads the configuration for picmd serve from
 // environment variables.
 package config
 
@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/asano69/picmd2/internal/errs"
+	"github.com/asano69/picmd/internal/errs"
 )
 
 // ServerConfig holds HTTP server settings.

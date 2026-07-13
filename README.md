@@ -1,6 +1,6 @@
-# picmd2
+# picmd
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/picmd2)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/picmd)
 
 ## Introduction 
 
@@ -10,7 +10,7 @@
 - クリップボードから簡単に画像をアップロードできる。
 
 ## Work in progress
-- picmdからpocketbase+soild.jsをベースにしたpicmd2に移行しようとしている。
+- picmdからpocketbase+soild.jsをベースにしたpicmdに移行しようとしている。
 - 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にすることが移行の目的。
 
 ## Plan

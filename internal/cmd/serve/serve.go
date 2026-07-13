@@ -2,9 +2,9 @@ package serve
 
 import (
 	"fmt"
-	"github.com/asano69/picmd2/internal/assets"
-	"github.com/asano69/picmd2/internal/config"
-	"github.com/asano69/picmd2/internal/hooks"
+	"github.com/asano69/picmd/internal/assets"
+	"github.com/asano69/picmd/internal/config"
+	"github.com/asano69/picmd/internal/hooks"
 	"io/fs"
 	"net/http"
 

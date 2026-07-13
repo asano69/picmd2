@@ -1,4 +1,4 @@
-module github.com/asano69/picmd2
+module github.com/asano69/picmd
 
 go 1.25.9
 

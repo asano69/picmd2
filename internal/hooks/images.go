@@ -12,7 +12,7 @@ import (
 	"github.com/pocketbase/pocketbase/tools/filesystem"
 	"github.com/sirupsen/logrus"
 
-	"github.com/asano69/picmd2/internal/media"
+	"github.com/asano69/picmd/internal/media"
 )
 
 // compressor is the Compressor implementation used for all uploaded images.

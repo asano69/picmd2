@@ -65,4 +65,4 @@ format:
 
 migrate-collections:
 	ls -1 migrations/*.go | sort | head -n -1 | xargs rm -f
-	yes | go run ./cmd/picmd2 migrate collections # 開発初期限定
+	yes | go run ./cmd/picmd migrate collections # 開発初期限定

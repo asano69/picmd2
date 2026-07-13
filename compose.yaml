@@ -1,14 +1,14 @@
 services:
-  picmd2:
-    image: ghcr.io/asano69/picmd2:latest
-    container_name: picmd2
+  picmd:
+    image: ghcr.io/asano69/picmd:latest
+    container_name: picmd
     restart: unless-stopped
     ports:
       - "3000:3000"
     env_file:
-      - picmd2.env
+      - picmd.env
     volumes:
-      - ./data:/picmd2/pb_data
+      - ./data:/picmd/pb_data
         #- /etc/ssl/certs/root_ca.crt:/certs/root_ca.crt:ro # optional
     environment:
       - TZ=Europe/London
@@ -19,7 +19,7 @@ services:
     #  - traefik_net
     #labels:
     #  - traefik.enable=true
-    #  - traefik.http.routers.picmd2.rule=Host(`picmd2.app.internal`)
+    #  - traefik.http.routers.picmd.rule=Host(`picmd.app.internal`)
 #volumes:
 #  data:
 

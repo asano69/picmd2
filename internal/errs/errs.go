@@ -1,4 +1,4 @@
-// Package errs provides the standard error type for picmd2.
+// Package errs provides the standard error type for picmd.
 package errs
 
 import "fmt"

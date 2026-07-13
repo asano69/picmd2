@@ -9,9 +9,9 @@ import (
 	pbcmd "github.com/pocketbase/pocketbase/cmd"
 	"github.com/spf13/cobra"
 
-	"github.com/asano69/picmd2/internal/cmd/serve"
+	"github.com/asano69/picmd/internal/cmd/serve"
 
-	"github.com/asano69/picmd2/internal/config"
+	"github.com/asano69/picmd/internal/config"
 
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
@@ -19,7 +19,7 @@ import (
 func main() {
 	app := pocketbase.NewWithConfig(pocketbase.Config{HideStartBanner: true})
 
-	// Registers "picmd2 migrate up/down/create/collections/history-sync"
+	// Registers "picmd migrate up/down/create/collections/history-sync"
 	// for manual or CI-driven schema management. Automigrate is off because
 	// the schema is defined purely in Go migration files (internal/migrations),
 	// not edited through the PocketBase dashboard.
@@ -28,7 +28,7 @@ func main() {
 	})
 
 	root := app.RootCmd
-	root.Use = "picmd2"
+	root.Use = "picmd"
 	root.Short = "my tool"
 	root.SilenceUsage = true
 	root.Version = "0.0.1-beta.1"

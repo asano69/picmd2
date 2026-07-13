@@ -1,7 +1,6 @@
 # Overview
 
-- picmdからpocketbase+soild.jsをベースにしたpicmd2に移行しようとしている。
-- 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にすることが移行の目的。
+- 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にする
 - バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
 
 ## Rules

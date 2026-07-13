@@ -4,8 +4,8 @@
 package db
 
 import (
-	"github.com/asano69/picmd2/internal/errs"
-	_ "github.com/asano69/picmd2/migrations"
+	"github.com/asano69/picmd/internal/errs"
+	_ "github.com/asano69/picmd/migrations"
 
 	"github.com/pocketbase/pocketbase"
 
@@ -17,10 +17,10 @@ type Database struct{ app *pocketbase.PocketBase }
 // OpenScratch creates a Database backed by a fresh, disposable PocketBase
 // instance in its own temporary directory. Each call returns an
 // independent, empty database with no effect on any other Database.
-// PocketBase always needs a directory on disk, so this is picmd2'
+// PocketBase always needs a directory on disk, so this is picmd'
 // equivalent of SQLite's ":memory:" mode.
 func OpenScratch() (*Database, error) {
-	dir, err := os.MkdirTemp("", "picmd2-pocketbase-*")
+	dir, err := os.MkdirTemp("", "picmd-pocketbase-*")
 	if err != nil {
 		return nil, errs.Newf("create temporary PocketBase data directory: %v", err)
 	}
@@ -32,9 +32,9 @@ func OpenScratch() (*Database, error) {
 }
 
 // New wraps an already-bootstrapped PocketBase app and ensures the
-// picmd2 schema exists in it. app is expected to be the single instance
-// shared by the whole CLI (see cmd/picmd2/main.go); its data directory is
-// controlled by PocketBase's standard "--dir" flag, not by picmd2 itself.
+// picmd schema exists in it. app is expected to be the single instance
+// shared by the whole CLI (see cmd/picmd/main.go); its data directory is
+// controlled by PocketBase's standard "--dir" flag, not by picmd itself.
 func New(app *pocketbase.PocketBase) (*Database, error) {
 	return newDatabase(app)
 }
