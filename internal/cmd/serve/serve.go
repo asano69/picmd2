@@ -44,11 +44,12 @@ func Run(app *pocketbase.PocketBase, cfg *config.Config) error {
 			return nil
 		})
 
-		// /i/{uuid} is the stable public link handed out for pasting into
-		// Markdown. It redirects to PocketBase's native file URL, so this
-		// is the only place that needs to change if storage ever moves
-		// away from PocketBase.
-		e.Router.GET("/i/{uuid}", func(re *core.RequestEvent) error {
+		// serveImage redirects to PocketBase's native file URL for the
+		// "images" record matching the {uuid} path value. It backs both
+		// the "/img/{uuid}" (default) and "/i/{uuid}" (legacy alias)
+		// routes below, so this is still the only place that needs to
+		// change if storage ever moves away from PocketBase.
+		serveImage := func(re *core.RequestEvent) error {
 			record, err := app.FindFirstRecordByFilter(
 				"images", "uuid = {:uuid}",
 				dbx.Params{"uuid": re.Request.PathValue("uuid")},
@@ -59,7 +60,13 @@ func Run(app *pocketbase.PocketBase, cfg *config.Config) error {
 			target := fmt.Sprintf("/api/files/images/%s/%s", record.Id, record.GetString("image"))
 			http.Redirect(re.Response, re.Request, target, http.StatusFound)
 			return nil
-		})
+		}
+
+		// "/img/{uuid}" is the current default public link handed out for
+		// pasting into Markdown. "/i/{uuid}" is kept as an alias so
+		// links generated before the rename don't break.
+		e.Router.GET("/img/{uuid}", serveImage)
+		e.Router.GET("/i/{uuid}", serveImage)
 
 		return e.Next()
 	})

@@ -72,7 +72,7 @@ export default function Upload() {
       updateItem(item.id, {
         status: "done",
         result: {
-          url: new URL(`/i/${record.uuid}`, window.location.origin).href,
+          url: new URL(`/img/${record.uuid}`, window.location.origin).href,
           filename: record.filename,
           filesize: record.filesize,
         },
