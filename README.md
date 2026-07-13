@@ -14,7 +14,7 @@
 - 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にすることが移行の目的。
 
 ## Plan
-- 複数画像のアップロードの方法を検討する
+- 
 
 ### Tech Stack
 - バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
