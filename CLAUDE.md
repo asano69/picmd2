@@ -1,7 +1,7 @@
 # Overview
 
-- このプロジェクトの目的は、汎用的な目的に使えるテンプレートとなるリポジトリをつくることです。
-- このアプリは、SPA＋CSRの個人向けのアプリです。
+- picmdからpocketbase+soild.jsをベースにしたpicmd2に移行しようとしている。
+- 画像のメタデータの管理にPocketbaseを使い、コンテンツの管理を容易にすることが移行の目的。
 - バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
 
 ## Rules
