@@ -834,6 +834,21 @@ func init() {
 						"type": "text"
 					},
 					{
+						"autogeneratePattern": "",
+						"help": "",
+						"hidden": false,
+						"id": "text3514781862",
+						"max": 0,
+						"min": 0,
+						"name": "uuid",
+						"pattern": "",
+						"presentable": false,
+						"primaryKey": false,
+						"required": false,
+						"system": false,
+						"type": "text"
+					},
+					{
 						"help": "",
 						"hidden": false,
 						"id": "file3309110367",
@@ -882,7 +897,7 @@ func init() {
 						"id": "number107555668",
 						"max": null,
 						"min": null,
-						"name": "access",
+						"name": "views",
 						"onlyInt": false,
 						"presentable": false,
 						"required": false,
@@ -907,7 +922,7 @@ func init() {
 				"system": false,
 				"type": "base",
 				"updateRule": null,
-				"viewRule": null
+				"viewRule": ""
 			}
 		]`
 
