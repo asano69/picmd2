@@ -21,6 +21,7 @@ import (
 // starts listening. The database and collection are shared across all sessions.
 func Run(app *pocketbase.PocketBase, cfg *config.Config) error {
 	hooks.RegisterImageCompression(app)
+	hooks.RegisterViewCounter(app)
 	// assetsFS exposes just the "assets/" subdirectory that Vite's default
 	// (unprefixed) base writes hashed JS/CSS bundles into, so they're served
 	// at the conventional /assets/... URL instead of /static/assets/....
