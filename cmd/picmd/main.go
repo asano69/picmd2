@@ -13,6 +13,7 @@ import (
 
 	"github.com/asano69/picmd/internal/config"
 
+	_ "github.com/asano69/picmd/migrations"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
 
