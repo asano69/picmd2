@@ -3,15 +3,14 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/asano69/picmd2)
 
 ## Introduction 
-
 <img src="frontend/public/favicon.svg" width="100" align="right" />
+- Markdwonに画像を貼り付けるためのURLを生成する画像アップローダ。
+- クリップボードから簡単に画像をアップロードできる。
 
-- このプロジェクトの目的は、汎用的な目的に使えるテンプレートとなるリポジトリをつくることです。
-- このアプリは、SPA＋CSRの個人向けのアプリです。
-- バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
+## 計画
+- バックエンドにPocketBaseをつかう。
+- 複数画像のアップロードの方法を検討する
 
 ### Tech Stack
-- Go
-- [SolidJS](https://github.com/solidjs/solid)
-- [PocketBase](https://github.com/pocketbase/pocketbase)
+- バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
 
