@@ -56,7 +56,7 @@ func Run(app *pocketbase.PocketBase, cfg *config.Config) error {
 			if err != nil {
 				return apis.NewNotFoundError("image not found", err)
 			}
-			target := fmt.Sprintf("/api/files/images/%s/%s", record.Id, record.GetString("filename"))
+			target := fmt.Sprintf("/api/files/images/%s/%s", record.Id, record.GetString("image"))
 			http.Redirect(re.Response, re.Request, target, http.StatusFound)
 			return nil
 		})
