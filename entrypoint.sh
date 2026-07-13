@@ -8,7 +8,7 @@ fi
 
 # Bootstrap: create the first superuser if one doesn't exist yet.
 # Throwaway credential meant to be rotated via the UI right after first login.
-ADMIN_EMAIL="${INITIAL_ADMIN_EMAIL:-admin@main.internal}"
+ADMIN_EMAIL="${INITIAL_ADMIN_EMAIL:-admin@mail.internal}"
 ADMIN_PASSWORD="${INITIAL_ADMIN_PASSWORD:-password}"
 
 # /picmd/data
