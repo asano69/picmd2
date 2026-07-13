@@ -24,3 +24,7 @@
 ### Tech Stack
 - バックエンドはGo+PocketBase **v0.39+**、frontendは、solid.js + **tailwind v4**で書かれています。
 
+## 参考
+- “h2non/imaginary: Fast, simple, scalable, Docker-ready HTTP microservice for high-level image processing”. GitHub, [https://github.com/h2non/imaginary](https://github.com/h2non/imaginary), (Accessed 2026-07-13)
+- “imgproxy/imgproxy: Fast and secure standalone server for resizing, processing, and converting images on the fly”. GitHub, [https://github.com/imgproxy/imgproxy?utm_source=chatgpt.com](https://github.com/imgproxy/imgproxy?utm_source=chatgpt.com), (Accessed 2026-07-13)
+- “willnorris/imageproxy: A caching, resizing image proxy written in Go”. GitHub, [https://github.com/willnorris/imageproxy?utm_source=chatgpt.com](https://github.com/willnorris/imageproxy?utm_source=chatgpt.com), (Accessed 2026-07-13)
