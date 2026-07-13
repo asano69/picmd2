@@ -12,7 +12,7 @@
 ![](./.github/assets/sample-01.png)
 
 ## Work in progress
-- 画像配信のためのデフォルトのパスを/i/から、/img/に変える。ただし両方からアクセス可能にする
+
 
 ## Plan
 - 
