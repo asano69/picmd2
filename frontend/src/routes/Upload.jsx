@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For, Show, onCleanup } from "solid-js";
 import NavBar from "../components/NavBar";
 import Button from "../components/Button";
 import pb from "../lib/pb";
@@ -8,6 +8,14 @@ function formatSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+// escapeCsvField quotes a CSV field if it contains a comma, quote, or newline.
+function escapeCsvField(value) {
+  if (/[",\n]/.test(value)) {
+    return `"${value.replace(/"/g, '""')}"`;
+  }
+  return value;
 }
 
 let nextId = 0;
@@ -21,8 +29,19 @@ export default function Upload() {
   const [items, setItems] = createSignal([]);
   const [status, setStatus] = createSignal("");
   const [allCopied, setAllCopied] = createSignal(false);
+  const [csvCopied, setCsvCopied] = createSignal(false);
 
   let fileInputRef;
+
+  // Timers for reverting the "Copied!" label on the two bulk-copy
+  // buttons back to normal after a few seconds.
+  let allCopiedTimer;
+  let csvCopiedTimer;
+
+  onCleanup(() => {
+    clearTimeout(allCopiedTimer);
+    clearTimeout(csvCopiedTimer);
+  });
 
   const addFiles = (fileList) => {
     const files = [...fileList].filter((f) => f.type.startsWith("image/"));
@@ -73,6 +92,7 @@ export default function Upload() {
         status: "done",
         result: {
           url: new URL(`/img/${record.uuid}`, window.location.origin).href,
+          uuid: record.uuid,
           filename: record.filename,
           filesize: record.filesize,
         },
@@ -98,6 +118,7 @@ export default function Upload() {
     setItems([]);
     setStatus("");
     setAllCopied(false);
+    setCsvCopied(false);
   };
 
   const copyAllMarkdown = () => {
@@ -106,6 +127,25 @@ export default function Upload() {
     const markdown = done.map((it) => `![](${it.result.url})`).join("\n");
     navigator.clipboard.writeText(markdown);
     setAllCopied(true);
+    clearTimeout(allCopiedTimer);
+    allCopiedTimer = setTimeout(() => setAllCopied(false), 3000);
+  };
+
+  // copyAllCsv copies a "filename,uuid" table for every successfully
+  // uploaded image, so links can be traced back to the source file
+  // later (e.g. for cleanup or auditing).
+  const copyAllCsv = () => {
+    const done = items().filter((it) => it.status === "done");
+    if (done.length === 0) return;
+    const rows = done.map((it) => {
+      const name = it.file.name || `clipboard-${it.id}`;
+      return `${escapeCsvField(name)},${it.result.uuid}`;
+    });
+    const csv = ["filename,uuid", ...rows].join("\n");
+    navigator.clipboard.writeText(csv);
+    setCsvCopied(true);
+    clearTimeout(csvCopiedTimer);
+    csvCopiedTimer = setTimeout(() => setCsvCopied(false), 3000);
   };
 
   // Pasting anywhere on the page picks up every image on the clipboard,
@@ -128,6 +168,8 @@ export default function Upload() {
   const hasPending = () =>
     items().some((it) => it.status === "pending" || it.status === "error");
   const hasDone = () => items().some((it) => it.status === "done");
+  const doneCount = () =>
+    items().filter((it) => it.status === "done").length;
 
   return (
     <div
@@ -175,6 +217,12 @@ export default function Upload() {
         }
       >
         <div class="w-full">
+          {/* Progress indicator: done / total, styled like the other
+              secondary text so it doesn't compete for attention. */}
+          <p class="mb-3 text-center text-sm opacity-70">
+            {doneCount()} / {items().length}
+          </p>
+
           <div class="flex flex-col gap-3">
             <For each={items()}>
               {(item) => (
@@ -228,12 +276,16 @@ export default function Upload() {
             </Show>
             <Show when={hasDone()}>
               <Button
-                value={allCopied() ? "Copied!" : "Copy All as Markdown"}
+                value={allCopied() ? "Copied!" : "Copy MD"}
                 onClick={copyAllMarkdown}
+              />
+              <Button
+                value={csvCopied() ? "Copied!" : "Copy CSV"}
+                onClick={copyAllCsv}
               />
             </Show>
             <Button value="Add More" onClick={() => fileInputRef.click()} />
-            <Button value="Clear All" onClick={clearAll} />
+            <Button value="Rest" onClick={clearAll} />
           </div>
         </div>
       </Show>
