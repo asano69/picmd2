@@ -15,7 +15,7 @@
 ![](./.github/assets/sample-01.png)
 
 ## Work in progress
-- LogoをクリックするとResetする
+- アップロードのあとの各画像のCopyボタンがCopiedにならない。Copyボタンの隣のRemoveボタンは不要
 - views カウントは、/_/からのアクセスを除外されているか調査
 
 ## Plan
