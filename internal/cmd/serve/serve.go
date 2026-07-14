@@ -7,6 +7,7 @@ import (
 	"github.com/asano69/picmd/internal/hooks"
 	"io/fs"
 	"net/http"
+	"strings"
 
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
@@ -49,10 +50,21 @@ func Run(app *pocketbase.PocketBase, cfg *config.Config) error {
 		// the "/img/{uuid}" (default) and "/i/{uuid}" (legacy alias)
 		// routes below, so this is still the only place that needs to
 		// change if storage ever moves away from PocketBase.
+		//
+		// The path value may come with an arbitrary extension appended
+		// (e.g. "...aee41a768eda.webp"), typically added by Markdown
+		// viewers or clients that expect image URLs to end in a file
+		// extension. UUIDs never contain a dot, so trimming everything
+		// from the first dot onward safely recovers the bare UUID.
 		serveImage := func(re *core.RequestEvent) error {
+			uuid := re.Request.PathValue("uuid")
+			if i := strings.IndexByte(uuid, '.'); i != -1 {
+				uuid = uuid[:i]
+			}
+
 			record, err := app.FindFirstRecordByFilter(
 				"images", "uuid = {:uuid}",
-				dbx.Params{"uuid": re.Request.PathValue("uuid")},
+				dbx.Params{"uuid": uuid},
 			)
 			if err != nil {
 				return apis.NewNotFoundError("image not found", err)
