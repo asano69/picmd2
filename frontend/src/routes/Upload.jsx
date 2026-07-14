@@ -113,6 +113,8 @@ export default function Upload() {
     Promise.all(pending.map(uploadOne)).then(() => setStatus(""));
   };
 
+  // Clears all items. Triggered by clicking the NavBar logo (see
+  // onLogoClick below) rather than a dedicated Reset button.
   const clearAll = () => {
     items().forEach((it) => URL.revokeObjectURL(it.previewUrl));
     setItems([]);
@@ -176,7 +178,7 @@ export default function Upload() {
       class="mx-auto flex min-h-screen w-full max-w-xl flex-col items-center bg-[var(--color-bg)] px-6 py-12 text-[var(--color-text)]"
       onPaste={onPaste}
     >
-      <NavBar />
+      <NavBar onLogoClick={clearAll} />
 
       {/* Kept outside the Show branches so "Add More" can reuse it too. */}
       <input
@@ -285,7 +287,6 @@ export default function Upload() {
               />
             </Show>
             <Button value="Add More" onClick={() => fileInputRef.click()} />
-            <Button value="Rest" onClick={clearAll} />
           </div>
         </div>
       </Show>
